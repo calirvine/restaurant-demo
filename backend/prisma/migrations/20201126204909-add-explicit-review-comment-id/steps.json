@@ -1,0 +1,44 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateField",
+      "model": "Review",
+      "field": "reviewComment",
+      "type": "ReviewComment",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Review",
+          "field": "reviewComment"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Review",
+          "field": "reviewComment"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[reviewCommentId]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Review",
+      "field": "reviewCommentId",
+      "type": "String",
+      "arity": "Optional"
+    }
+  ]
+}

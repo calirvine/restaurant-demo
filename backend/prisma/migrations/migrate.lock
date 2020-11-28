@@ -1,0 +1,9 @@
+# Prisma Migrate lockfile v1
+
+20201123004320-initial
+20201123004806-add-reviews
+20201124004540-add-sessions
+20201126023825-make-profile-optional
+20201126145003-add-restaurant-description
+20201126164821-adding-clearer-relations
+20201126204909-add-explicit-review-comment-id

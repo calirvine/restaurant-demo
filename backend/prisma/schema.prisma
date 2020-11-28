@@ -1,0 +1,57 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id          String @id @default(uuid())
+  email       String @unique
+  password    String
+  created_at  DateTime @default(now())
+  updated_at  DateTime @default(now())
+  profile     Profile?
+  restaurants Restaurant[]
+}
+
+model Profile {
+  id          String @id @default(uuid())
+  name        String
+  role        Int @default(0) // Roles = 0 regular visitor 1 = restaurant owner 2 = Admin
+}
+
+model Restaurant {
+  id          String @id @default(uuid())
+  name        String
+  description String
+  owner       User @relation(fields: [ownerId], references: [id])
+  ownerId     String
+}
+
+model Review {
+  id              String @id @default(uuid())
+  rating          Int
+  comment         String
+  restaurant      Restaurant
+  author          User
+  reviewComment   ReviewComment? @relation(fields: [reviewCommentId])
+  reviewCommentId String?
+}
+
+model ReviewComment {
+  id          String @id @default(uuid())
+  comment     String
+  author      User
+  review      Review
+}
+
+model Session {
+  id          String @id @default(uuid())
+  data        String
+}
